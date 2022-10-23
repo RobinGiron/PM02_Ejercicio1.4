@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             BackgroundImageSource="OM0UU.png"
+             x:Class="Tarea1_4.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="toolMenu1" Text="Agregar" IconImageSource="add_48px.png" Order="Primary" Priority="0" Clicked="toolMenu1_Clicked" />
+        <ToolbarItem x:Name="toolMenu2" Text="Ver desde SQLite" Order="Secondary" Priority="0" Clicked="toolMenu2_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame  BackgroundColor="DarkBlue" Margin="10" CornerRadius="20" Padding="14" HasShadow="True">
+                <Label Text="Imagenes en Mis Fotos" HorizontalOptions="CenterAndExpand" FontSize="Large" TextColor="FloralWhite"/>
+            </Frame>
+            <ScrollView>
+                <ListView x:Name="listaImagen" HasUnevenRows="True" ItemTapped="listaImagen_ItemTapped" SeparatorVisibility="Default" 
+                      Refreshing="listaImagen_Refreshing" IsPullToRefreshEnabled="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10" BackgroundColor="#FFE1BA" Opacity="0.8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame CornerRadius="100" 
+                                   HeightRequest="130"
+                                   WidthRequest="130"
+                                   HorizontalOptions="Center"
+                                   Padding="0"
+                                   HasShadow="True"
+                                   IsClippedToBounds="True">
+                                        <Image Source="{Binding desc}"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+                                    </Frame>
+                                    <Label Grid.Column="1"
+                                       Text="{Binding titulo}"
+                                       LineBreakMode="WordWrap"
+                                       FontSize="Large"
+                                       TextColor="Black"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontAttributes="Bold" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

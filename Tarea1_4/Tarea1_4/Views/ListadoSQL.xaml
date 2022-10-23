@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Convertidor="clr-namespace:Tarea1_4.Convertidor"
+             BackgroundImageSource="OM0UU.png"
+             x:Class="Tarea1_4.Views.ListadoSQL">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Convertidor:ByteArrayToImage x:Key="ByteToImage"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame  BackgroundColor="OrangeRed" Margin="10" CornerRadius="20" Padding="14">
+                <Label Text="Imagenes en SQLite" HorizontalOptions="CenterAndExpand" FontSize="Large" TextColor="FloralWhite"/>
+            </Frame>
+            <ScrollView>
+                <ListView x:Name="listaImagen2" HasUnevenRows="True" ItemTapped="listaImagen2_ItemTapped"
+                          Refreshing="listaImagen2_Refreshing" IsPullToRefreshEnabled="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10" BackgroundColor="#FFE1BA">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Frame CornerRadius="100" 
+                                   HeightRequest="130"
+                                   WidthRequest="130"
+                                   HorizontalOptions="Center"
+                                   Padding="0"
+                                   HasShadow="True"
+                                   IsClippedToBounds="True">
+                                        <Image Source="{Binding img, Converter={StaticResource ByteToImage}}"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+                                    </Frame>
+                                    <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding lblid}" FontAttributes="Bold" FontSize="Large"/>
+                                        <Label Text="{Binding lbltitulo}" FontAttributes="Bold" FontSize="Large" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding lbldesc}" FontAttributes="Bold" FontSize="Default" LineBreakMode="WordWrap"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
